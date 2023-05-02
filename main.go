@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -20,7 +21,12 @@ func index(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, developer)
 }
 
+func contacts(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "09888234685")
+}
+
 func main() {
 	http.HandleFunc("/", index)
+	http.HandleFunc("/contacts/", contacts)
 	http.ListenAndServe(":8080", nil)
 }
